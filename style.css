@@ -1,26 +1,70 @@
-/* Main container: center content */
-.container {
-  position: fixed; /* stay fixed on screen */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;       /* adjust width */
-  height: 90vh;      /* adjust height */
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at center, #1a0000 0%, #0a0000 100%);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  font-family: "Shadows Into Light", cursive;
+}
+
+/* Main container: center content */
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 2;
+}
+
+/* Petal heart */
+.petal-heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  height: 350px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Each petal */
+.petal {
+  position: absolute;
+  width: 24px;
+  height: 28px;
+  background: radial-gradient(circle at 30% 30%, #ff7e9e 0%, #c00040 80%);
+  border-radius: 50% 50% 0 0;
+  transform-origin: bottom center;
+  opacity: 0;
+  animation: bloom 2s ease forwards;
+}
+
+@keyframes bloom {
+  0% { transform: scale(0.2) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1.1) rotate(10deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.petal.fade-out {
+  animation: fadeOut 2.5s ease forwards;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: scale(0.6) translateY(50px); }
 }
 
 /* Paper reveal */
 .paper {
   position: relative;
-  width: 80%;
-  max-width: 600px;
-  height: 80%;
-  max-height: 80vh;
-  background: #fdf3d1; /* light parchment color */
+  width: 600px;         /* fixed width */
+  max-width: 90vw;
+  height: 500px;        /* fixed height */
+  background: #fdf3d1;  /* solid parchment color */
   border: 8px solid #a9744f;
   border-radius: 10px;
   box-shadow: 0 0 50px rgba(0,0,0,0.5);
@@ -31,6 +75,8 @@
   opacity: 0;
   transform: scale(0.9);
   transition: transform 1s ease, opacity 1s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .paper.revealed {
@@ -38,18 +84,16 @@
   transform: scale(1);
 }
 
-/* Make letter scrollable without reducing font */
+/* Make letter scrollable */
 .love-letter {
-  width: 100%;
-  height: 100%;
+  flex: 1;              /* fill paper height */
   overflow-y: auto;
   color: #5c3b1e;
   font-size: 1.1rem;
   line-height: 1.5;
-  padding-right: 10px; /* for scrollbar spacing */
+  padding-right: 10px;  /* space for scrollbar */
 }
 
-/* Optional: nice scrollbar */
 .love-letter::-webkit-scrollbar {
   width: 6px;
 }
@@ -70,4 +114,13 @@
   text-align: right;
   font-size: 1.3rem;
   color: #7c4a28;
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+  .paper {
+    width: 90%;
+    height: 400px;
+    padding: 25px;
+  }
 }
