@@ -3,15 +3,15 @@
 body {
   margin: 0;
   height: 100vh;
-  background: radial-gradient(circle at center, #1a0000 0%, #0a0000 100%);
   overflow: hidden;
+  font-family: "Shadows Into Light", cursive;
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Shadows Into Light", cursive;
 }
 
-/* Main container: center content */
+/* Container centers paper & heart */
 .container {
   position: relative;
   display: flex;
@@ -58,25 +58,24 @@ body {
   to { opacity: 0; transform: scale(0.6) translateY(50px); }
 }
 
-/* Paper reveal */
+/* Paper */
 .paper {
-  position: relative;
-  width: 600px;         /* fixed width */
+  width: 600px;
   max-width: 90vw;
-  height: 500px;        /* fixed height */
-  background: #fdf3d1;  /* solid parchment color */
+  max-height: 80vh;
+  background: #fdf3d1;
   border: 8px solid #a9744f;
   border-radius: 10px;
   box-shadow: 0 0 50px rgba(0,0,0,0.5);
   padding: 40px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  z-index: 3;
   opacity: 0;
   transform: scale(0.9);
   transition: transform 1s ease, opacity 1s ease;
-  display: flex;
-  flex-direction: column;
+  z-index: 3;
 }
 
 .paper.revealed {
@@ -84,14 +83,14 @@ body {
   transform: scale(1);
 }
 
-/* Make letter scrollable */
+/* Letter scrollable */
 .love-letter {
-  flex: 1;              /* fill paper height */
   overflow-y: auto;
-  color: #5c3b1e;
+  flex: 1;
   font-size: 1.1rem;
   line-height: 1.5;
-  padding-right: 10px;  /* space for scrollbar */
+  color: #5c3b1e;
+  padding-right: 10px;
 }
 
 .love-letter::-webkit-scrollbar {
@@ -116,11 +115,6 @@ body {
   color: #7c4a28;
 }
 
-/* Small screens */
-@media (max-width: 600px) {
-  .paper {
-    width: 90%;
-    height: 400px;
-    padding: 25px;
-  }
-}
+/* Starry night canvas */
+#starCanvas {
+  position:
